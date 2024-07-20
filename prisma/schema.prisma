@@ -1,0 +1,69 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+
+model Store {
+  id String @id @default(uuid())
+  storeName String
+  userId String
+  billboards Billboard[] @relation("StoreToBillboard")
+  categories Category[] @relation("StoreToCategory")
+  sizes Size[] @relation("StoreToSize")
+  createAt DateTime @default(now())
+  updateAt DateTime @updatedAt
+}
+
+model Billboard {
+  id String @id @default(uuid())
+  storeId String
+  store Store @relation("StoreToBillboard", fields: [storeId], references: [id])
+  categories Category[]
+  label String
+  imageUrl String
+  createAt DateTime @default(now())
+  updateAt DateTime @updatedAt
+
+}
+
+model Category {
+  id String @id @default(uuid())
+  storeId String
+  store Store @relation("StoreToCategory", fields: [storeId], references: [id])
+  billboardId String
+  billboard Billboard @relation(fields: [billboardId], references: [id])
+  name String
+  createAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Size {
+  id String @id @default(uuid())
+  storeId String
+  store Store @relation("StoreToSize", fields: [storeId], references: [id])
+  name String
+  value String
+  createAt DateTime @default(now())
+  updateAt DateTime @updatedAt
+}
+
+// model Product {
+//   id String @id @default(uuid())
+//   storeId String
+//   store Store @relation("StoreToProduct", fields: [storeId], references: [id])
+//   name String
+//   value String
+//       createAt DateTime @default(now())
+//   updateAt DateTime @updatedAt
+// }
