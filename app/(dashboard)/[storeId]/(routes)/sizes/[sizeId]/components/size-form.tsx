@@ -58,7 +58,6 @@ const SizeForm: React.FC<SizeFormProps> = ({ initialData }) => {
   const onSubmit = async (data: SizeFormValues) => {
     try {
       setLoading(true);
-      console.log(data);
       if (initialData) {
         await axios.patch(
           `/api/${params.storeId}/sizes/${params.sizeId}`,

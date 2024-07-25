@@ -16,11 +16,7 @@ export default function MainNav({
       label: "Overview",
       active: pathname === `/${params.storeId}`,
     },
-    {
-      href: `/${params.storeId}/settings`,
-      label: "Settings",
-      active: pathname === `/${params.storeId}/settings`,
-    },
+
     {
       href: `/${params.storeId}/categories`,
       label: "Categories",
@@ -36,6 +32,26 @@ export default function MainNav({
       label: "Sizes",
       active: pathname === `/${params.storeId}/sizes`,
     },
+    {
+      href: `/${params.storeId}/colors`,
+      label: "Colors",
+      active: pathname === `/${params.storeId}/colors`,
+    },
+    {
+      href: `/${params.storeId}/products`,
+      label: "Products",
+      active: pathname === `/${params.storeId}/products`,
+    },
+    {
+      href: `/${params.storeId}/settings`,
+      label: "Settings",
+      active: pathname === `/${params.storeId}/settings`,
+    },
+    {
+      href: `/${params.storeId}/orders`,
+      label: "Orders",
+      active: pathname === `/${params.storeId}/orders`,
+    },
   ];
   return (
     <nav
@@ -49,7 +65,7 @@ export default function MainNav({
           key={route.href}
           href={route.href}
           className={cn(
-            "font-medium transition-all hover:text-primary border-b-4 border-white flex items-center h-full hover:border-black",
+            " font-medium transition-all hover:text-primary border-b-4 border-white flex items-center h-full hover:border-black",
             route.active
               ? "text-black dark:text-white border-black"
               : "text-muted-foreground"

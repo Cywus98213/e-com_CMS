@@ -31,7 +31,7 @@ const Navbar = async () => {
         <StoreSwitcher items={stores} />
         <MainNav className="mx-6 hidden md:flex" />
         <div className="hidden ml-auto md:flex items-center ">
-          <UserButton afterSignOutUrl="/" />
+          <UserButton afterSwitchSessionUrl="/" />
         </div>
         <div className="ml-auto flex items-center md:hidden">
           <Sheet>
